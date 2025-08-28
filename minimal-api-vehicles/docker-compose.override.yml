@@ -3,25 +3,13 @@ version: '3.9'
 services:
   mysql:
     env_file:
-      - .env.development
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
+      - .env.${ASPNETCORE_ENVIRONMENT}
 
   api:
-    env_file:
-      - .env.development
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=${ASPNETCORE_URLS}
       - JWT_SECRET=${JWT_SECRET}
-      - ConnectionStrings__DefaultConnection=server=mysql;port=3306;database=${MYSQL_DATABASE};user=${MYSQL_USER};password=${MYSQL_PASSWORD}
-    ports:
-      - "5000:5000"
-      - "5001:5001"
-    depends_on:
-      - mysql
-
-volumes:
-  mysql_data:
+      - ConnectionStrings__DefaultConnection=server=mysql;port=${MYSQL_PORT};database=${MYSQL_DATABASE};user=${MYSQL_USER};password=${MYSQL_PASSWORD}
+    env_file:
+      - .env.${ASPNETCORE_ENVIRONMENT}
