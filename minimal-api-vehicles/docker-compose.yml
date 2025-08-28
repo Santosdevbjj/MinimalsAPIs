@@ -1,36 +1,32 @@
-version: "3.8"
+version: '3.9'
+
 services:
   mysql:
     image: mysql:8.0
-    container_name: ma_mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: Pass@123
-      MYSQL_DATABASE: vehiclesdb
+    restart: always
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
-      - dbdata:/var/lib/mysql
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      - mysql_data:/var/lib/mysql
+    networks:
+      - vehicles_network
 
   api:
     build:
       context: ./src/MinimalApi.Vehicles
       dockerfile: Dockerfile
-    depends_on:
-      mysql:
-        condition: service_healthy
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__Default=Server=mysql;Port=3306;Database=vehiclesdb;User=root;Password=Pass@123;
-      - Jwt__Key=MudarParaUmaChaveSuperSecretaEVeryLong123!
-      - Jwt__Issuer=MinimalApiVehicles
-      - Jwt__Audience=MinimalApiVehiclesClient
+    restart: always
     ports:
-      - "5000:80"
+      - "5000:5000"
+      - "5001:5001"
+    depends_on:
+      - mysql
+    networks:
+      - vehicles_network
 
 volumes:
-  dbdata:
+  mysql_data:
+
+networks:
+  vehicles_network:
+    driver: bridge
