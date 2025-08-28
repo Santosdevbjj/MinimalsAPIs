@@ -312,13 +312,7 @@ Swagger não aparece → ASPNETCORE_ENVIRONMENT=Development.
 ---
 
 
-Licença
 
-MIT License. Veja LICENSE.
-
-
-
----
 
 
 
