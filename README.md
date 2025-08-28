@@ -97,7 +97,7 @@ minimal-api-vehicles/
 ├─ .gitignore
 ├─ docker-compose.yml
 ├─ docker-compose.override.yml
-├─ README.md
+├
 └─ .github/workflows/ci-cd.yml
 
 
