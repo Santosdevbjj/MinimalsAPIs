@@ -24,3 +24,17 @@ services:
 
 volumes:
   mysql_data:
+
+
+version: '3.9'
+services:
+  api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ASPNETCORE_URLS=${ASPNETCORE_URLS}
+      - JWT_SECRET=${JWT_SECRET}
+    env_file:
+      - .env.development
+  mysql:
+    env_file:
+      - .env.development
