@@ -3,7 +3,7 @@
 ![GFTNet001](https://github.com/user-attachments/assets/53b03495-a48d-4248-a775-5de04bd979cc)
 
 
-**Bootcamp GFT Start #7 .NET, ministrado pela DIO**
+**Bootcamp GFT Start #7 .NET, ministrado pela DIO** 
 
 --- 
 
