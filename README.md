@@ -106,7 +106,7 @@ minimal-api-vehicles/
 
 ---
 
-2. Descrição dos Arquivos
+2. **Descrição dos Arquivos**
 
 docker-compose.yml
 
@@ -190,7 +190,7 @@ Ignora bin/, obj/, .env*, publish/, arquivos temporários.
 
 ---
 
-3. Como rodar
+3. **Como rodar**
 
 Development
 
@@ -208,14 +208,14 @@ Editor: editor@local.test / Editor@123
 
 
 
-Test
+**Test**
 
 docker-compose --env-file .env.test up --build --abort-on-container-exit
 
 Executa testes automatizados e encerra os containers.
 
 
-Production
+**Production**
 
 docker-compose --env-file .env.production up -d --build
 
@@ -227,14 +227,14 @@ Logs: docker-compose logs -f
 
 ---
 
-4. Migrations (EF Core)
+4. **Migrations (EF Core)**
 
 Criar migration:
 
 
 dotnet ef migrations add InitialCreate -p src/MinimalApi.Vehicles -s src/MinimalApi.Vehicles
 
-Aplicar:
+**Aplicar:**
 
 
 dotnet ef database update -p src/MinimalApi.Vehicles -s src/MinimalApi.Vehicles
@@ -246,7 +246,7 @@ dotnet ef database update -p src/MinimalApi.Vehicles -s src/MinimalApi.Vehicles
 
 ---
 
-5. Endpoints principais
+5. **Endpoints principais**
 
 Método	Endpoint	Roles
 
@@ -264,7 +264,7 @@ GET	/admins	Admin
 
 ---
 
-6. Exemplos práticos (curl)
+6. **Exemplos práticos (curl)**
 
 Login e obter token
 
@@ -272,21 +272,21 @@ curl -X POST http://localhost:5000/login \
   -H "Content-Type: application/json" \
   -d '{"email":"admin@local.test","password":"Admin@123"}'
 
-Criar veículo
+**Criar veículo**
 
 curl -X POST http://localhost:5000/vehicles \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <TOKEN>" \
   -d '{"make":"Toyota","model":"Corolla","vin":"JTDBR32E720012345","year":2020}'
 
-Listar veículos
+**Listar veículos**
 
 curl -H "Authorization: Bearer <TOKEN>" http://localhost:5000/vehicles
 
 
 ---
 
-7. Boas práticas
+7. **Boas práticas**
 
 Não versionar .env com segredos.
 
@@ -302,7 +302,7 @@ Evitar migrations automáticas em produção.
 
 ---
 
-8. Troubleshooting rápido
+8. **Troubleshooting rápido**
 
 Erro MySQL → checar portas, DB_HOST, logs do container.
 
