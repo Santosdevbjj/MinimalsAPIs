@@ -59,56 +59,20 @@ curl -X POST http://localhost:5000/login \
 ---
 
 
+**Versão Detalhada**
+
+1. **Estrutura de Diretórios**
+
+<img width="799" height="1307" alt="Screenshot_20251002-144625" src="https://github.com/user-attachments/assets/2d8bd492-88ef-428c-9f2c-03f6c0a6fc06" />
 
 
-Versão Detalhada
-
-1. Estrutura de Diretórios
-
-minimal-api-vehicles/
-├─ src/
-│  ├─ MinimalApi.Vehicles/
-│  │  ├─ MinimalApi.Vehicles.csproj
-│  │  ├─ Program.cs
-│  │  ├─ appsettings.json
-│  │  ├─ appsettings.Development.json
-│  │  ├─ Dockerfile
-│  │  ├─ Models/
-│  │  │  ├─ AdminUser.cs
-│  │  │  └─ Vehicle.cs
-│  │  ├─ DTOs/
-│  │  │  ├─ LoginRequest.cs
-│  │  │  ├─ VehicleDto.cs
-│  │  │  └─ AdminCreateDto.cs
-│  │  ├─ Data/
-│  │  │  ├─ AppDbContext.cs
-│  │  │  └─ DbSeed.cs
-│  │  ├─ Services/
-│  │  │  ├─ IAuthService.cs
-│  │  │  └─ AuthService.cs
-│  │  └─ Extensions/
-│  │     └─ ServiceExtensions.cs
-│  └─ MinimalApi.Vehicles.Tests/
-│     ├─ MinimalApi.Vehicles.Tests.csproj
-│     ├─ UnitTests/
-│     │  └─ AdminUserTests.cs
-│     └─ IntegrationTests/
-│        └─ VehiclesApiTests.cs
-├─ .env.development
-├─ .env.test
-├─ .env.production
-├─ .gitignore
-├─ docker-compose.yml
-├─ docker-compose.override.yml
-├
-└─ .github/workflows/ci-cd.yml
 
 
 ---
 
 2. **Descrição dos Arquivos**
 
-docker-compose.yml
+**docker-compose.yml**
 
 Define serviços mysql e api.
 
@@ -117,7 +81,7 @@ Base para todos os ambientes.
 Não contém credenciais sensíveis.
 
 
-docker-compose.override.yml
+**docker-compose.override.yml**
 
 Overwrite do compose para desenvolvimento.
 
@@ -140,41 +104,41 @@ JWT_SECRET
 
 
 
-src/MinimalApi.Vehicles/
+**src/MinimalApi.Vehicles/**
 
-Código principal da API:
+**Código principal da API:**
 
-Program.cs → configura endpoints, middlewares, JWT, Swagger, DI, EF Core.
+**Program.cs** → configura endpoints, middlewares, JWT, Swagger, DI, EF Core.
 
-Models/ → entidades (Vehicle, AdminUser).
+**Models/** → entidades (Vehicle, AdminUser).
 
-DTOs/ → objetos de entrada/saída (LoginRequest, VehicleDto, AdminCreateDto).
+**DTOs/** → objetos de entrada/saída (LoginRequest, VehicleDto, AdminCreateDto).
 
-Data/ → AppDbContext + DbSeed (seed de usuários).
+**Data/** → AppDbContext + DbSeed (seed de usuários).
 
-Services/ → lógica de autenticação (AuthService) e interface (IAuthService).
+**Services/** → lógica de autenticação (AuthService) e interface (IAuthService).
 
-Extensions/ → métodos auxiliares e configuração de serviços.
-
-
-
-src/MinimalApi.Vehicles.Tests/
-
-Projeto de testes automatizados:
-
-UnitTests/ → teste de entidades e regras de negócio.
-
-IntegrationTests/ → testes de endpoints da API e integração com banco.
+**Extensions/** → métodos auxiliares e configuração de serviços.
 
 
 
-.github/workflows/ci-cd.yml
+**src/MinimalApi.Vehicles.Tests/**
+
+**Projeto de testes automatizados:**
+
+**UnitTests/ → teste de entidades e regras de negócio.**
+
+**IntegrationTests/** → testes de endpoints da API e integração com banco.
+
+
+
+**.github/workflows/ci-cd.yml**
 
 Pipeline GitHub Actions:
 
 Build
 
-Testes unitários e integração
+**Testes unitários e integração**
 
 (Opcional) Build Docker + push
 
@@ -229,7 +193,7 @@ Logs: docker-compose logs -f
 
 4. **Migrations (EF Core)**
 
-Criar migration:
+**Criar migration:**
 
 
 dotnet ef migrations add InitialCreate -p src/MinimalApi.Vehicles -s src/MinimalApi.Vehicles
@@ -266,7 +230,7 @@ GET	/admins	Admin
 
 6. **Exemplos práticos (curl)**
 
-Login e obter token
+**Login e obter token**
 
 curl -X POST http://localhost:5000/login \
   -H "Content-Type: application/json" \
@@ -304,11 +268,11 @@ Evitar migrations automáticas em produção.
 
 8. **Troubleshooting rápido**
 
-Erro MySQL → checar portas, DB_HOST, logs do container.
+**Erro MySQL** → checar portas, DB_HOST, logs do container.
 
 401 / Token inválido → verificar JWT_SECRET do .env.
 
-Swagger não aparece → ASPNETCORE_ENVIRONMENT=Development.
+**Swagger não aparece** → ASPNETCORE_ENVIRONMENT=Development.
 
 
 
