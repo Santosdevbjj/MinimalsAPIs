@@ -21,7 +21,9 @@ Uma aplicação de exemplo em **.NET 8 Minimal APIs** para gerenciamento de veí
 
 ---
 
-## 🚀 Versão Enxuta (Quickstart)
+## 🚀 Versão Enxuta (Quickstart) 
+```
+
 
 ### Rodando em Development
 ```bash
